@@ -5,12 +5,9 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-export async function generatePrompts(
-  model: string,
-  prompt: string
-): Promise<string> {
+export async function generatePrompts(prompt: string): Promise<string> {
   const response = await openai.completions.create({
-    model: model,
+    model: "gpt-3.5-turbo-instruct",
     prompt: prompt,
     max_tokens: 1024,
     temperature: 0.5,

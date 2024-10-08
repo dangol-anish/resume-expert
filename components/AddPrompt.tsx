@@ -11,10 +11,10 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
-import { generatePrompts } from "@/utils/openai"; // Ensure this is correctly imported
+import { generatePrompts } from "@/utils/openai";
 
 export interface AddPromptProps {
-  setEvaluations: React.Dispatch<React.SetStateAction<string[]>>; // Updated prop type
+  setEvaluations: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 export default function AddPrompt({ setEvaluations }: AddPromptProps) {
@@ -38,32 +38,27 @@ export default function AddPrompt({ setEvaluations }: AddPromptProps) {
     const userQuery = `What are the red flags on this resume based on the following job description? Resume: ${resumeDescription}. Job Description: ${jobDescription}`;
 
     try {
-      const evaluation = await generatePrompts(
-        "gpt-3.5-turbo-instruct",
-        userQuery
-      );
+      const evaluation = await generatePrompts(userQuery);
 
-      // Update evaluations immediately
       setEvaluations((prev) => [...prev, evaluation]);
 
-      // Generate further evaluations one after the other
       const focus = await generateFocus(
         evaluation,
         resumeDescription,
         jobDescription
       );
-      setEvaluations((prev) => [...prev, focus]); // Update evaluations immediately
+      setEvaluations((prev) => [...prev, focus]);
 
       const comprehensiveGuide = await generateComprehensiveGuide(focus);
-      setEvaluations((prev) => [...prev, comprehensiveGuide]); // Update evaluations immediately
+      setEvaluations((prev) => [...prev, comprehensiveGuide]);
 
       const recommendations = await generateRecommendations(comprehensiveGuide);
-      setEvaluations((prev) => [...prev, recommendations]); // Update evaluations immediately
+      setEvaluations((prev) => [...prev, recommendations]);
 
       const candidateEvaluation = await generateCandidateEvaluation(
         recommendations
       );
-      setEvaluations((prev) => [...prev, candidateEvaluation]); // Update evaluations immediately
+      setEvaluations((prev) => [...prev, candidateEvaluation]);
     } catch (error) {
       console.error("Error generating evaluation:", error);
       alert(
@@ -78,72 +73,59 @@ export default function AddPrompt({ setEvaluations }: AddPromptProps) {
     job: string
   ) => {
     const focusQuery = `Based on the evaluation: "${evaluation}", resume: "${resume}", and job description: "${job}", what should be the focus?`;
-    return await generatePrompts("gpt-3.5-turbo-instruct", focusQuery);
+    return await generatePrompts(focusQuery);
   };
 
   const generateComprehensiveGuide = async (focus: string) => {
     const guideQuery = `Provide a comprehensive guide based on the following focus: "${focus}".`;
-    return await generatePrompts("gpt-3.5-turbo-instruct", guideQuery);
+    return await generatePrompts(guideQuery);
   };
 
   const generateRecommendations = async (guide: string) => {
     const recommendationsQuery = `Based on the comprehensive guide: "${guide}", what are some recommendations?`;
-    return await generatePrompts(
-      "gpt-3.5-turbo-instruct",
-      recommendationsQuery
-    );
+    return await generatePrompts(recommendationsQuery);
   };
 
   const generateCandidateEvaluation = async (recommendations: string) => {
     const evaluationQuery = `Evaluate the candidate based on the following recommendations: "${recommendations}".`;
-    return await generatePrompts("gpt-3.5-turbo-instruct", evaluationQuery);
+    return await generatePrompts(evaluationQuery);
   };
 
   return (
-    <main className="flex justify-center items-center p-10">
-      <Dialog>
-        <DialogTrigger className="border px-3 py-2 rounded-lg hover:bg-gray-100 transition">
-          Add
-        </DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Resume Expert</DialogTitle>
-            <DialogDescription>
-              Enter your resume and job description to get tailored feedback.
-            </DialogDescription>
-          </DialogHeader>
+    <div className="w-[50%] h-screen flex flex-col  justify-between p-10">
+      <div className="flex flex-col gap-6">
+        <div>
+          <Label htmlFor="resume" className="font-semibold ">
+            Add your resume here
+          </Label>
+          <Textarea
+            id="resume"
+            value={resumeDescription}
+            onChange={handleResumeChange}
+            placeholder="Business Analyst CV"
+            rows={4}
+            className="resize-none bg-input_background h-40"
+          />
+        </div>
 
-          <div className="flex flex-col gap-5">
-            <div>
-              <Label htmlFor="resume">Enter your resume</Label>
-              <Textarea
-                id="resume"
-                value={resumeDescription}
-                onChange={handleResumeChange}
-                placeholder="Type your resume here."
-                rows={4}
-                className="resize-none"
-              />
-            </div>
+        <div>
+          <Label htmlFor="job" className="font-semibold">
+            Past the job postings here
+          </Label>
+          <Textarea
+            id="job"
+            value={jobDescription}
+            onChange={handleJobChange}
+            placeholder="Business Analyst Job Description"
+            rows={4}
+            className="resize-none bg-input_background h-40"
+          />
+        </div>
+      </div>
 
-            <div>
-              <Label htmlFor="job">Enter the job description</Label>
-              <Textarea
-                id="job"
-                value={jobDescription}
-                onChange={handleJobChange}
-                placeholder="Type the job description here."
-                rows={4}
-                className="resize-none"
-              />
-            </div>
-
-            <Button onClick={handleGenerate} className="self-start">
-              Generate
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
-    </main>
+      <Button onClick={handleGenerate} className="self-start w-full  font-bold">
+        Generate Results
+      </Button>
+    </div>
   );
 }
