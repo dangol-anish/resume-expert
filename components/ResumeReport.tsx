@@ -6,19 +6,23 @@ export interface ResumeReportProps {
 
 function ResumeReport({ evaluations }: ResumeReportProps) {
   return (
-    <div className="flex h-full overflow-y-auto justify-center flex-col ">
-      <h2 className="text-lg font-bold">Resume Report</h2>
+    <div className="w-[50%] h-full p-10 flex overflow-y-auto flex-col gap-6">
       {evaluations.length > 0 ? (
         evaluations.map((evaluation, index) => (
-          <div key={index} className="mt-4 p-4 border rounded shadow">
-            <h3 className="text-lg font-semibold">
+          <div className="flex flex-col gap-1">
+            <h3 className="text-lg font-semibold ">
               Evaluation Result {index + 1}
             </h3>
-            <p>{evaluation}</p>
+            <div
+              key={index}
+              className="p-4 border rounded-md bg-input_background"
+            >
+              <p>{evaluation}</p>
+            </div>
           </div>
         ))
       ) : (
-        <p>No evaluations generated yet.</p>
+        <p>No reports generated yet.</p>
       )}
     </div>
   );

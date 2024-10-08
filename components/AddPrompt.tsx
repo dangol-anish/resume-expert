@@ -20,6 +20,7 @@ export interface AddPromptProps {
 export default function AddPrompt({ setEvaluations }: AddPromptProps) {
   const [resumeDescription, setResumeDescription] = useState<string>("");
   const [jobDescription, setJobDescription] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false); // New state for tracking loading
 
   const handleResumeChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setResumeDescription(e.target.value);
@@ -34,6 +35,8 @@ export default function AddPrompt({ setEvaluations }: AddPromptProps) {
       alert("Please fill in both fields before generating.");
       return;
     }
+
+    setLoading(true); // Start loading
 
     const userQuery = `What are the red flags on this resume based on the following job description? Resume: ${resumeDescription}. Job Description: ${jobDescription}`;
 
@@ -64,6 +67,8 @@ export default function AddPrompt({ setEvaluations }: AddPromptProps) {
       alert(
         "An error occurred while generating the evaluation. Please try again."
       );
+    } finally {
+      setLoading(false); // Stop loading once done
     }
   };
 
@@ -110,7 +115,7 @@ export default function AddPrompt({ setEvaluations }: AddPromptProps) {
 
         <div>
           <Label htmlFor="job" className="font-semibold">
-            Past the job postings here
+            Paste the job postings here
           </Label>
           <Textarea
             id="job"
@@ -123,8 +128,12 @@ export default function AddPrompt({ setEvaluations }: AddPromptProps) {
         </div>
       </div>
 
-      <Button onClick={handleGenerate} className="self-start w-full  font-bold">
-        Generate Results
+      <Button
+        onClick={handleGenerate}
+        className="self-start w-full font-bold"
+        disabled={loading} // Disable button while loading
+      >
+        {loading ? "Generating..." : "Generate Results"}
       </Button>
     </div>
   );

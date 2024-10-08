@@ -9,7 +9,7 @@ export default function Home() {
 
   return (
     <>
-      <main className="flex w-[100%] ">
+      <main className="flex w-[100%] h-screen">
         <AddPrompt setEvaluations={setEvaluations} />
         <Separator
           className="w-[1px] h-screen bg-black/10"
