@@ -3,7 +3,7 @@ export const HeadingItem = [
     page: "Project Section",
     items: [
       {
-        title: "mira",
+        title: "resume checkup",
       },
       {
         main_heading: "Let's check out your resume",
