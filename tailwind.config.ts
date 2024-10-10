@@ -13,6 +13,11 @@ const config: Config = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         input_background: "#F2F2F2",
+        // overall
+        primary_color: "#ED7E00",
+        // button
+        button_bg: "#FFEBD7",
+        p_border: "#FFDFC3",
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
