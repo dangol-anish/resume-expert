@@ -18,6 +18,7 @@ const config: Config = {
         // button
         button_bg: "#FFEBD7",
         p_border: "#FFDFC3",
+        a_black: "#080808",
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
