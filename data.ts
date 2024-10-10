@@ -13,4 +13,19 @@ export const HeadingItem = [
       },
     ],
   },
+  {
+    page: "Add Projects",
+    items: [
+      {
+        title: "resume checkup",
+      },
+      {
+        main_heading: "A new job awaits",
+      },
+      {
+        sub_heading:
+          "Add your project name and copy paste your resume. Simple as that.",
+      },
+    ],
+  },
 ];
