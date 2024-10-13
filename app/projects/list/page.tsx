@@ -43,10 +43,10 @@ function ProjectList() {
           ))}
         </div>
 
-        <div className="flex flex-col h-full justify-between">
+        <div className="flex flex-col h-full justify-between ">
           {ListComponent.length > 0 ? (
-            <div className="max-h-[50vh] overflow-y-auto w-full flex flex-col justify-between text-a_black no-scrollbar">
-              <Table className="h-full  text-a_black/80">
+            <div className="max-h-[50vh] overflow-y-auto w-full flex flex-col justify-between text-a_black ">
+              <Table className="h-full text-a_black/80 ">
                 <TableHeader className="">
                   <TableRow>
                     <TableHead className="w-[100px]">Date</TableHead>
@@ -55,7 +55,7 @@ function ProjectList() {
                     <TableHead className="text-right">Remarks</TableHead>
                   </TableRow>
                 </TableHeader>
-                <TableBody>
+                <TableBody className="">
                   {ListComponent.map((item) => (
                     <TableRow key={item.id}>
                       <TableCell className="font-medium">
