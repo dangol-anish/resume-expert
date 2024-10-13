@@ -66,7 +66,7 @@ function Projects() {
       {CardComponent.length === 0 ? null : (
         <div className="w-full flex justify-center mt-4">
           <Link
-            href="/projects/add"
+            href="/projects/add-resume"
             className="flex justify-center items-center bg-[#FFB158] text-a_black border border-primary_color rounded-full font-bold hover:bg-primary_color px-5 py-2"
           >
             Create a project
