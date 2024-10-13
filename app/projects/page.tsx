@@ -35,7 +35,7 @@ function Projects() {
         ))}
       </div>
 
-      <div className="h-full w-full flex flex-col justify-between">
+      <div className="h-full w-full flex flex-col ">
         {CardComponent.length > 0 ? (
           <div className="flex-grow px-8 py-4 grid grid-cols-3 gap-4 max-h-[50vh] overflow-y-auto no-scrollbar">
             {CardComponent.map((item) => (

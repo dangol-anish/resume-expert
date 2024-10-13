@@ -170,7 +170,7 @@ interface List {
   remarks: string;
 }
 
-const ListComponent: List[] = [
+export const ListComponent: List[] = [
   {
     id: 1,
     date: new Date("2024-09-12"),
