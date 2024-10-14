@@ -1,8 +1,9 @@
 import React from "react";
 import { Brygada_1918 } from "next/font/google";
 import Link from "next/link";
-import { CardComponent, ListComponent } from "@/data";
+import { CardComponent, ListComponent, ResultExample } from "@/data";
 import { HeadingItem } from "@/data";
+import { Button } from "@/components/ui/button";
 
 const brygada = Brygada_1918({ subsets: ["latin"] });
 
@@ -32,6 +33,67 @@ function Results() {
               )}
             </div>
           ))}
+        </div>
+
+        <div className="flex flex-col justify-between h-full">
+          <div className="flex flex-col gap-6 max-h-[55vh] overflow-y-auto no-scrollbar">
+            <div className="flex gap-3 flex-col">
+              <span className="text-sm font-bold">Quick Summary</span>
+              <p className="text-sm text-a_black">
+                {ResultExample.quick_summary}
+              </p>
+            </div>
+            <div className="flex gap-3 flex-col">
+              <span className="text-sm font-bold">Red Flags</span>
+              <ul className="text-sm text-a_black">
+                {ResultExample.red_flags.map((flag, index) => (
+                  <li className="list-disc ml-4" key={index}>
+                    {flag}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="flex gap-3 flex-col">
+              <span className="text-sm font-bold">Interview Focus</span>
+              <ul className="text-sm text-a_black">
+                {ResultExample.interview_focus.map((focus, index) => (
+                  <li key={index} className="list-disc ml-4">
+                    {focus}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="flex gap-3 flex-col">
+              <span className="text-sm font-bold">Quick Tips</span>
+              <p className="text-sm text-a_black">{ResultExample.quick_tips}</p>
+            </div>
+            <div className="flex gap-3 flex-col">
+              <span className="text-sm font-bold">
+                Resume to Job Match Ratio
+              </span>
+              <p className="text-sm text-a_black">
+                {ResultExample.rtj_match_ratio}%
+              </p>
+            </div>
+            <div className="flex gap-3 flex-col">
+              <span className="text-sm font-bold">Final Remarks</span>
+              <p className="text-sm text-a_black">
+                {ResultExample.final_remarks}
+              </p>
+            </div>
+          </div>
+          <div className="w-full flex justify-center mt-4 items-center  flex-col gap-6">
+            <Link
+              href="/projects/list"
+              className="flex justify-center items-center bg-[#FFB158] text-a_black border border-primary_color rounded-full font-bold hover:bg-primary_color px-5 py-2"
+            >
+              Back to projects
+            </Link>
+            <span className="text-xs text-a_black/80">
+              Resume Checkup can make mistakes and is not professional advice.
+              Proceed with caution .
+            </span>
+          </div>
         </div>
       </div>
     </>

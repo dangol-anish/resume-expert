@@ -31,7 +31,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex bg-gradient-to-b from-[#FFE0C6] to-white h-screen justify-center gap-2 `}
       >
         <Sidebar />
-        <div className="flex flex-col h-full ">
+        <div className="flex flex-col h-[95vh]">
           <div className="h-full">
             <div className="w-[650px] h-[95%] bg-primary_color justify-self-center bg-gradient-to-b from-white to-[#FFE0C6] border border-p_border rounded-[40px] mt-10">
               {children}

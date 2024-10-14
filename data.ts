@@ -333,3 +333,31 @@ export const ListComponent: List[] = [
     remarks: "Consider later",
   },
 ];
+
+interface ResultExampleProps {
+  quick_summary: string;
+  red_flags: string[]; // Specify that this is an array of strings
+  interview_focus: string[]; // Specify that this is an array of strings
+  quick_tips: string;
+  rtj_match_ratio: number;
+  final_remarks: string;
+}
+
+export const ResultExample: ResultExampleProps = {
+  quick_summary:
+    "Based on the resume of Prithika Suwal and the job description for the Implementation Analyst position at TELUS Health, here are some potential red flags to consider during the evaluation process:",
+  red_flags: [
+    "The candidate does not have specific experience in pension administration or working with pension plans, which is a key requirement for the role.",
+    "Prithika has only been in her current role as a Junior Business Analyst for about one year (Jun 2023 - Jun 2024).",
+    "While the candidate has experience in data management and process improvement, there is no explicit mention of experience in software implementation or configuration, which is crucial for the role.",
+  ],
+  interview_focus: [
+    "Can you describe any experience you have with pension administration or working with pension plans?",
+    "Have you been involved in any software implementation projects? If so, can you describe your role?",
+    "What steps would you take to familiarize yourself with a new software system, such as ARIEL®?",
+  ],
+  quick_tips:
+    "By focusing on these areas during the interview, you can gain deeper insights into Prithika Suwal's qualifications and potential fit for the Implementation Analyst role at TELUS Health. Additionally, this approach allows you to assess her adaptability, commitment, and problem-solving skills, which are crucial for success in the position.",
+  rtj_match_ratio: 84,
+  final_remarks: "Apply",
+};
