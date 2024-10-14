@@ -56,6 +56,20 @@ export const HeadingItem = [
       },
     ],
   },
+  {
+    page: "Job Results",
+    items: [
+      {
+        title: "resume checkup",
+      },
+      {
+        main_heading: "Results for this job",
+      },
+      {
+        sub_heading: "We're analyzing your resume with this job description",
+      },
+    ],
+  },
 ];
 
 interface Card {
