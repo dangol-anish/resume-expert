@@ -20,7 +20,7 @@ export interface AddPromptProps {
 export default function AddPrompt({ setEvaluations }: AddPromptProps) {
   const [resumeDescription, setResumeDescription] = useState<string>("");
   const [jobDescription, setJobDescription] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false); // New state for tracking loading
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleResumeChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setResumeDescription(e.target.value);
@@ -68,7 +68,7 @@ export default function AddPrompt({ setEvaluations }: AddPromptProps) {
         "An error occurred while generating the evaluation. Please try again."
       );
     } finally {
-      setLoading(false); // Stop loading once done
+      setLoading(false);
     }
   };
 
@@ -97,7 +97,7 @@ export default function AddPrompt({ setEvaluations }: AddPromptProps) {
   };
 
   return (
-    <div className="w-[50%] h-screen flex flex-col  justify-between p-10">
+    <div className="w-[50%] flex flex-col  justify-between p-10">
       <div className="flex flex-col gap-6">
         <div>
           <Label htmlFor="resume" className="font-semibold ">

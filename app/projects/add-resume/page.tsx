@@ -11,7 +11,7 @@ const brygada = Brygada_1918({ subsets: ["latin"] });
 
 function AddProjects() {
   return (
-    <div className="h-full flex flex-col w-full p-8 text-primary_color items-center gap-12">
+    <div className="h-full flex flex-col w-full text-primary_color items-center gap-12">
       <div className="flex flex-col items-center">
         {HeadingItem[1].items.map((item, index) => (
           <div key={index}>
@@ -54,7 +54,7 @@ function AddProjects() {
         </div>
         <div className="w-full flex justify-center mt-4">
           <Button className="bg-[#FFB158] text-a_black border border-primary_color rounded-full font-bold hover:bg-primary_color px-5 py-2">
-            Create a project
+            Create project
           </Button>
         </div>
       </div>

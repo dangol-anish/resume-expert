@@ -10,7 +10,7 @@ const brygada = Brygada_1918({ subsets: ["latin"] });
 function Results() {
   return (
     <>
-      <div className="h-full flex flex-col w-full p-8 text-primary_color items-center gap-8">
+      <div className="flex flex-col gap-8 h-full">
         <div className="flex flex-col items-center">
           {HeadingItem[4].items.map((item, index) => (
             <div key={index}>
@@ -36,7 +36,7 @@ function Results() {
         </div>
 
         <div className="flex flex-col justify-between h-full">
-          <div className="flex flex-col gap-6 max-h-[55vh] overflow-y-auto no-scrollbar">
+          <div className="flex flex-col gap-6 max-h-[50vh] overflow-y-auto no-scrollbar">
             <div className="flex gap-3 flex-col">
               <span className="text-sm font-bold">Quick Summary</span>
               <p className="text-sm text-a_black">
@@ -82,7 +82,7 @@ function Results() {
               </p>
             </div>
           </div>
-          <div className="w-full flex justify-center mt-4 items-center  flex-col gap-6">
+          <div className="w-full flex justify-center items-center  flex-col gap-2">
             <Link
               href="/projects/list"
               className="flex justify-center items-center bg-[#FFB158] text-a_black border border-primary_color rounded-full font-bold hover:bg-primary_color px-5 py-2"

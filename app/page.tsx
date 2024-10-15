@@ -10,12 +10,13 @@ export default function Home() {
   return (
     <>
       <main className="flex w-[100%]">
-        <AddPrompt setEvaluations={setEvaluations} />
+        {/* <AddPrompt setEvaluations={setEvaluations} />
         <Separator
           className="w-[1px] h-screen bg-black/10"
           orientation="horizontal"
         />
-        <ResumeReport evaluations={evaluations} />
+        <ResumeReport evaluations={evaluations} /> */}
+        hi
       </main>
     </>
   );

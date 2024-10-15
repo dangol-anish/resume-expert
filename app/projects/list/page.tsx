@@ -18,7 +18,7 @@ const brygada = Brygada_1918({ subsets: ["latin"] });
 function ProjectList() {
   return (
     <>
-      <div className="h-full flex flex-col w-full p-8 text-primary_color items-center gap-8">
+      <div className="h-full flex flex-col w-full text-primary_color items-center gap-8">
         <div className="flex flex-col items-center">
           {HeadingItem[2].items.map((item, index) => (
             <div key={index}>
