@@ -12,7 +12,7 @@ const brygada = Brygada_1918({ subsets: ["latin"] });
 function Projects() {
   return (
     <div className="h-full flex  flex-col gap-8 items-center text-primary_color">
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center ">
         {HeadingItem[0].items.map((item, index) => (
           <div key={index}>
             {item.title && (
@@ -43,7 +43,7 @@ function Projects() {
               {CardComponent.map((item) => (
                 <div
                   key={item.id}
-                  className="flex flex-col items-center text-a_black"
+                  className="flex flex-col items-center text-a_black hover:bg-[#FFF1EA] p-2 rounded-lg"
                 >
                   <Image src={card} alt="Card" />{" "}
                   <p className="text-sm">{item.job_title}</p>

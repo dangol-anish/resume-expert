@@ -336,8 +336,8 @@ export const ListComponent: List[] = [
 
 interface ResultExampleProps {
   quick_summary: string;
-  red_flags: string[]; // Specify that this is an array of strings
-  interview_focus: string[]; // Specify that this is an array of strings
+  red_flags: string[];
+  interview_focus: string[];
   quick_tips: string;
   rtj_match_ratio: number;
   final_remarks: string;

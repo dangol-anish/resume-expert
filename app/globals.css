@@ -85,3 +85,7 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+.result-subheading {
+  color: #ed7e00;
+}

@@ -11,7 +11,7 @@ function Results() {
   return (
     <>
       <div className="flex flex-col gap-8 h-full">
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center text-primary_color">
           {HeadingItem[4].items.map((item, index) => (
             <div key={index}>
               {item.title && (
@@ -38,13 +38,17 @@ function Results() {
         <div className="flex flex-col justify-between h-full">
           <div className="flex flex-col gap-6 max-h-[50vh] overflow-y-auto no-scrollbar">
             <div className="flex gap-3 flex-col">
-              <span className="text-sm font-bold">Quick Summary</span>
+              <span className="text-sm font-bold result-subheading">
+                Quick Summary
+              </span>
               <p className="text-sm text-a_black">
                 {ResultExample.quick_summary}
               </p>
             </div>
             <div className="flex gap-3 flex-col">
-              <span className="text-sm font-bold">Red Flags</span>
+              <span className="text-sm font-bold result-subheading ">
+                Red Flags
+              </span>
               <ul className="text-sm text-a_black">
                 {ResultExample.red_flags.map((flag, index) => (
                   <li className="list-disc ml-4" key={index}>
@@ -54,7 +58,9 @@ function Results() {
               </ul>
             </div>
             <div className="flex gap-3 flex-col">
-              <span className="text-sm font-bold">Interview Focus</span>
+              <span className="text-sm font-bold result-subheading">
+                Interview Focus
+              </span>
               <ul className="text-sm text-a_black">
                 {ResultExample.interview_focus.map((focus, index) => (
                   <li key={index} className="list-disc ml-4">
@@ -64,11 +70,13 @@ function Results() {
               </ul>
             </div>
             <div className="flex gap-3 flex-col">
-              <span className="text-sm font-bold">Quick Tips</span>
+              <span className="text-sm font-bold result-subheading">
+                Quick Tips
+              </span>
               <p className="text-sm text-a_black">{ResultExample.quick_tips}</p>
             </div>
             <div className="flex gap-3 flex-col">
-              <span className="text-sm font-bold">
+              <span className="text-sm font-bold result-subheading">
                 Resume to Job Match Ratio
               </span>
               <p className="text-sm text-a_black">
@@ -76,7 +84,9 @@ function Results() {
               </p>
             </div>
             <div className="flex gap-3 flex-col">
-              <span className="text-sm font-bold">Final Remarks</span>
+              <span className="text-sm font-bold result-subheading">
+                Final Remarks
+              </span>
               <p className="text-sm text-a_black">
                 {ResultExample.final_remarks}
               </p>
