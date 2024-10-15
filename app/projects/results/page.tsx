@@ -92,7 +92,7 @@ function Results() {
               </p>
             </div>
           </div>
-          <div className="w-full flex justify-center items-center  flex-col gap-2">
+          <div className="w-full flex justify-center items-center  flex-col gap-3">
             <Link
               href="/projects/list"
               className="flex justify-center items-center bg-[#FFB158] text-a_black border border-primary_color rounded-full font-bold hover:bg-primary_color px-5 py-2"
