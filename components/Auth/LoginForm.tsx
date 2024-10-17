@@ -1,5 +1,4 @@
 import Link from "next/link";
-
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -11,6 +10,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { login } from "@/lib/auth-actions";
+import SignInWithGoogleButton from "./SignInWithGoogleButton";
 
 export const description =
   "A login form with email and password. There's an option to login with Google and a link to sign up if you don't have an account.";
@@ -52,9 +52,7 @@ export function LoginForm() {
             <Button type="submit" className="w-full" formAction={login}>
               Login
             </Button>
-            <Button type="button" variant="outline" className="w-full">
-              Login with Google
-            </Button>
+            <SignInWithGoogleButton />
           </div>
         </form>
         <div className="mt-4 text-center text-sm">
