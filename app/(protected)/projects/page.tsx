@@ -4,7 +4,7 @@ import { Brygada_1918 } from "next/font/google";
 import Link from "next/link";
 import { CardComponent } from "@/data";
 import Image from "next/image";
-import card from "../../public/card.svg";
+import card from "../../../public/card.svg";
 import { Button } from "@/components/ui/button";
 
 const brygada = Brygada_1918({ subsets: ["latin"] });
