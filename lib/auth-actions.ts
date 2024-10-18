@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 import { createClient } from "@/utils/supabase/server";
+import { getURL } from "next/dist/shared/lib/utils";
 
 export async function login(formData: FormData) {
   const supabase = createClient();
@@ -21,8 +22,8 @@ export async function login(formData: FormData) {
     redirect("/error");
   }
 
-  revalidatePath("/", "layout");
-  redirect("/");
+  revalidatePath("/projects", "layout");
+  redirect("/projects");
 }
 
 export async function signup(formData: FormData) {
@@ -49,8 +50,8 @@ export async function signup(formData: FormData) {
     redirect("/error");
   }
 
-  revalidatePath("/", "layout");
-  redirect("/");
+  revalidatePath("/projects", "layout");
+  redirect("/projects");
 }
 
 export async function signout() {
@@ -60,12 +61,15 @@ export async function signout() {
     console.log(error);
     redirect("/error");
   }
-
-  redirect("/logout");
+  revalidatePath("/login");
+  redirect("/login");
 }
 
 export async function signInWithGoogle() {
   const supabase = createClient();
+
+  const redirectUrl = "https://resume-expert-omega.vercel.app/auth/callback";
+
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
@@ -73,13 +77,16 @@ export async function signInWithGoogle() {
         access_type: "offline",
         prompt: "consent",
       },
+      redirectTo: redirectUrl,
     },
   });
 
   if (error) {
-    console.log(error);
+    console.log("Error:", error);
     redirect("/error");
   }
 
-  redirect(data.url);
+  if (data.url) {
+    redirect(data.url); // use the redirect API for your server framework
+  }
 }
