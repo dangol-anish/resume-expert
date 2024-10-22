@@ -1,16 +1,17 @@
+"use client"
 import { HeadingItem } from "@/data";
 import React from "react";
 import { Brygada_1918 } from "next/font/google";
-import Link from "next/link";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
+
 import AddResumeForm from "@/components/Projects/AddResumeForm";
+
 
 const brygada = Brygada_1918({ subsets: ["latin"] });
 
 function AddProjects() {
+
+
+
   return (
     <div className="h-full flex flex-col w-full text-primary_color items-center gap-12">
       <div className="flex flex-col items-center ">

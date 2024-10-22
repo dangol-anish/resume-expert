@@ -1,47 +1,46 @@
 "use client"
-import React, { ChangeEvent, useRef } from 'react'
+import React, { ChangeEvent, useRef, useState } from 'react'
 import { Label } from '../ui/label'
 import { Input } from '../ui/input'
 import { Textarea } from '../ui/textarea'
 import { Button } from '../ui/button'
-import { useState } from 'react'
 import { ProjectDataProps } from '@/types'
+import { AddProjects } from '@/app/(protected)/projects/add-resume/actions'
 import { useToast } from '@/hooks/use-toast'
 
 const AddResumeForm = () => {
+    const {toast} = useToast()
     const formRef = useRef<HTMLFormElement>(null);
     const [pending, setPending] = useState(false)
-    const {toast} = useToast()
 
-    const [projectData, setProjectData] = useState({
+    const [projectData, setProjectData] = useState<ProjectDataProps>({
         projectName: "",
         resume: ""
     })
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
-
-        setProjectData((prev) => (
-            {
-                ...prev,
-                [name]: value
-            }
-        ))
+        setProjectData(prev => ({ ...prev, [name]: value }));
     }
 
     const handleFormSubmission = async (projectData: ProjectDataProps) => {
-        setPending(true)
-        const result = { error: false };
-        setPending(false)
-        if (result?.error) {
+        setPending(true);
+        const result = await AddProjects(projectData);
+        setPending(false);
+
+        if (result.error) {
             toast({
                 variant: "destructive",
-                title: "Authentication Error",
-                description: "Error while adding a new project"
+                title: "Error: Unable to Add Project",
+                description: result.error
             })
-            return
         }
-        formRef.current?.reset()
+
+
+
+        // Reset form and state
+        formRef.current?.reset();
+        setProjectData({ projectName: "", resume: "" });
     }
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -53,7 +52,7 @@ const AddResumeForm = () => {
         <form ref={formRef} onSubmit={handleSubmit} className="h-full w-full flex flex-col">
             <div className="flex flex-col flex-grow text-a_black">
                 <div>
-                    <Label className="">Project Name</Label>
+                    <Label>Project Name</Label>
                     <Input
                         placeholder="Business Analyst"
                         className="bg-white border-p_border rounded-lg"
@@ -68,7 +67,7 @@ const AddResumeForm = () => {
                     <Textarea
                         className="bg-white border-p_border rounded-lg resize-none h-[90%]"
                         placeholder="Copy and paste your entire resume here"
-                        name='resume'  // Fixing the mismatch in name
+                        name='resume'
                         value={projectData.resume}
                         onChange={handleInputChange}
                     />
@@ -86,4 +85,4 @@ const AddResumeForm = () => {
     )
 }
 
-export default AddResumeForm
+export default AddResumeForm;

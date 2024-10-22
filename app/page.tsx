@@ -11,20 +11,6 @@ import { useRouter } from "next/navigation"; // Import useRouter for redirection
 const supabase = createClient(); // Create Supabase client outside the component
 
 export default function Home() {
-  // const router = useRouter(); // Initialize the router for redirection
-
-  // useEffect(() => {
-  //   const checkUserSession = async () => {
-  //     const {
-  //       data: { session },
-  //     } = await supabase.auth.getSession();
-  //     if (session) {
-  //       router.push("/projects");
-  //     }
-  //   };
-
-  //   checkUserSession();
-  // }, []);
 
   return (
     <>
