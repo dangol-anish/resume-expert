@@ -69,7 +69,8 @@ export async function signout() {
 export async function signInWithGoogle() {
   const supabase = createClient();
 
-    const redirectUrl = getURL("/auth/callback");
+    const redirectUrl = "https://resume-expert-omega.vercel.app/auth/callback";
+
 
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
