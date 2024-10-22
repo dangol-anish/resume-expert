@@ -1,14 +1,17 @@
-"use client"
+"use client";
 import { createClient } from '@/utils/supabase/client';
 import { AppProps } from 'next/app';
-
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-export default function MyApp({ Component, pageProps }: AppProps) {
-    const supabase = createClient();
+export default function AuthLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
+  const supabase = createClient();
 
   useEffect(() => {
     const checkUser = async () => {
@@ -19,15 +22,16 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       if (session) {
         router.push('/projects');
       } else {
-        setLoading(false);
+        setLoading(false); // Set loading to false when no session is found
       }
     };
 
     checkUser();
-  }, [router]);
+  }, [router, supabase]);
 
-
+  // Loading screen while checking authentication
   if (loading) return <p></p>;
 
-  return <Component {...pageProps} />;
+  // Return children if not loading
+  return <>{children}</>;
 }
