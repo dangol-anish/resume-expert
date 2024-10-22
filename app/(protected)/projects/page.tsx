@@ -56,7 +56,7 @@ function Projects() {
           ) : (
             <div className="w-full flex justify-center items-center mt-4 h-full">
               <Link
-                href="/projects/add"
+                href="/projects/add-resume"
                 className="flex justify-center items-center bg-[#FFB158] text-a_black border border-primary_color rounded-full font-bold hover:bg-primary_color px-5 py-2"
               >
                 Create a project
