@@ -56,30 +56,30 @@ export async function updateSession(request: NextRequest) {
     }
   );
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+// //   const {
+// //     data: { user },
+// //   } = await supabase.auth.getUser();
 
-  if (!user) {
-    if (
-      !url.pathname.startsWith("/login") &&
-      !url.pathname.startsWith("/signup") &&
-      url.pathname !== "/"
-    ) {
-      url.pathname = "/login";
-      return NextResponse.redirect(url);
-    }
-  } else {
-    if (
-      url.pathname.startsWith("/login") ||
-      url.pathname.startsWith("/signup") ||
-      url.pathname === "/"
-    ) {
-      // user is logged in but trying to access login, signup, or root page, redirect to a protected page
-      url.pathname = "/projects";
-      return NextResponse.redirect(url);
-    }
-  }
+// //   if (!user) {
+// //     if (
+// //       !url.pathname.startsWith("/login") &&
+// //       !url.pathname.startsWith("/signup") &&
+// //       url.pathname !== "/"
+// //     ) {
+// //       url.pathname = "/login";
+// //       return NextResponse.redirect(url);
+// //     }
+// //   } else {
+// //     if (
+// //       url.pathname.startsWith("/login") ||
+// //       url.pathname.startsWith("/signup") ||
+// //       url.pathname === "/"
+// //     ) {
+// //       // user is logged in but trying to access login, signup, or root page, redirect to a protected page
+// //       url.pathname = "/projects";
+// //       return NextResponse.redirect(url);
+// //     }
+//   }
 
   return response;
 }

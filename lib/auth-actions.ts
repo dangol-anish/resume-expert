@@ -65,11 +65,11 @@ export async function signout() {
   redirect("/login");
 }
 
+
 export async function signInWithGoogle() {
   const supabase = createClient();
 
-  const redirectUrl = getURL("/auth/callback");
-  console.log("This is redirect url" + "  " + redirectUrl);
+    const redirectUrl = getURL("/auth/callback");
 
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
@@ -85,7 +85,9 @@ export async function signInWithGoogle() {
   if (error) {
     console.log("Error:", error);
     redirect("/error");
+    return; // Ensure to return after redirect
   }
 
+  supabase.auth.onAuthStateChange(state => console.log("Consoling OnAuthStateChange: " + " " + state));
   redirect(data.url);
 }

@@ -9,9 +9,7 @@ const SignInWithGoogleButton = () => {
       type="button"
       variant="outline"
       className="w-full"
-      onClick={() => {
-        signInWithGoogle();
-      }}
+      onClick={()=> signInWithGoogle()}
     >
       Login with Google
     </Button>
