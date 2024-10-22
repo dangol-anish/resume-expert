@@ -9,8 +9,6 @@ import { getURL } from "@/utils/helper";
 export async function login(formData: FormData) {
   const supabase = createClient();
 
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
   const data = {
     email: formData.get("email") as string,
     password: formData.get("password") as string,
@@ -19,7 +17,7 @@ export async function login(formData: FormData) {
   const { error } = await supabase.auth.signInWithPassword(data);
 
   if (error) {
-    redirect("/error");
+    redirect(`/error?message=${encodeURIComponent(error.message)}`);
   }
 
   revalidatePath("/projects", "layout");
@@ -29,8 +27,6 @@ export async function login(formData: FormData) {
 export async function signup(formData: FormData) {
   const supabase = createClient();
 
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
   const firstName = formData.get("first-name") as string;
   const lastName = formData.get("last-name") as string;
   const data = {
@@ -47,7 +43,7 @@ export async function signup(formData: FormData) {
   const { error } = await supabase.auth.signUp(data);
 
   if (error) {
-    redirect("/error");
+    redirect(`/error?message=${encodeURIComponent(error.message)}`);
   }
 
   revalidatePath("/projects", "layout");
@@ -65,14 +61,14 @@ export async function signout() {
   redirect("/login");
 }
 
-
+// oauth signin
 export async function signInWithGoogle() {
   const supabase = createClient();
 
-    const redirectUrl = "https://resume-expert-omega.vercel.app/auth/callback";
+const redirectUrl = getURL("/auth/callback");
 
 
-  const { data, error } = await supabase.auth.signInWithOAuth({
+const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
       queryParams: {
@@ -86,9 +82,8 @@ export async function signInWithGoogle() {
   if (error) {
     console.log("Error:", error);
     redirect("/error");
-    return; // Ensure to return after redirect
+    return;
   }
 
-  supabase.auth.onAuthStateChange(state => console.log("Consoling OnAuthStateChange: " + " " + state));
   redirect(data.url);
 }
