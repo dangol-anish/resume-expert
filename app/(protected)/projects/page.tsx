@@ -10,6 +10,7 @@ import { getProjectData } from "./actions";
 
 import { useToast } from "@/hooks/use-toast";
 import { UUID } from "crypto";
+import { TextLimit } from "@/utils/text-limit";
 
 interface ProjectData {
   projectId: UUID;
@@ -91,10 +92,10 @@ function Projects() {
               {projectData.map((item) => (
                 <div
                   key={item.projectId}
-                  className="flex flex-col items-center text-a_black hover:bg-[#FFF1EA] p-2 rounded-lg"
+                  className="flex flex-col items-center text-a_black hover:bg-[#FFF1EA] p-2 rounded-lg justify-center"
                 >
                   <Image src={card} alt="Card" />
-                  <p className="text-sm">{item.projectName}</p>
+                  <p className="text-sm line-clamp-1">{TextLimit(item.projectName, 20)}</p>
                   <p className="text-xs text-a_black/70">
                     {item.numberOfJobs} Jobs
                   </p>

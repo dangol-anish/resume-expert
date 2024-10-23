@@ -12,7 +12,7 @@ export async function getProjectData(){
         };
     }
 
-    const { data, error } = await supabase.from("projects").select("project_id, project_name, no_of_jobs").eq("user_id", user.id);
+    const { data, error } = await supabase.from("projects").select("project_id, project_name, no_of_jobs").eq("user_id", user.id)
 
     if (error) {
         return {
