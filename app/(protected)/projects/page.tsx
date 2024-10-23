@@ -11,13 +11,8 @@ import { getProjectData } from "./actions";
 import { useToast } from "@/hooks/use-toast";
 import { UUID } from "crypto";
 import { TextLimit } from "@/utils/text-limit";
+import { ProjectData } from "@/types";
 
-interface ProjectData {
-  projectId: UUID;
-  projectName: string;
-  numberOfJobs: number;
-  
-}
 
 
 const brygada = Brygada_1918({ subsets: ["latin"] });
@@ -90,7 +85,8 @@ function Projects() {
           {projectData.length > 0 ? (
             <div className="flex-grow px-8 py-4 grid grid-cols-3 gap-4 max-h-[50vh] overflow-y-auto no-scrollbar">
               {projectData.map((item) => (
-                <div
+                <Link
+                href="/projects/list"
                   key={item.projectId}
                   className="flex flex-col items-center text-a_black hover:bg-[#FFF1EA] p-2 rounded-lg justify-center"
                 >
@@ -99,7 +95,7 @@ function Projects() {
                   <p className="text-xs text-a_black/70">
                     {item.numberOfJobs} Jobs
                   </p>
-                </div>
+                </Link>
               ))}
             </div>
           ) : (

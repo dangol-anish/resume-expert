@@ -1,3 +1,5 @@
+import { UUID } from "crypto";
+
 // Types
 export interface ProjectDataProps {
     projectName: string;
@@ -16,3 +18,11 @@ export interface ProjectDataProps {
     projectName: string;
     no_of_jobs: number;
   }
+
+  export interface ProjectData {
+    projectId: UUID;
+    projectName: string;
+    numberOfJobs: number;
+    
+  }
+  
