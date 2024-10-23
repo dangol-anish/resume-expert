@@ -24,11 +24,23 @@ const AddResumeForm = () => {
     }
 
     const handleFormSubmission = async (projectData: ProjectDataProps) => {
+        if(projectData.projectName.trim() === "" || projectData.projectName.trim() === ""){
+            toast({
+                variant: "destructive",
+                title: "Invalid Input",
+                description: "Project Name or Resume cannot be empty"
+            })
+
+            return;
+        }
+
         setPending(true);
         const result = await AddProjects(projectData);
         setPending(false);
 
-        if (result.error) {
+        console.log(result);
+
+        if (result?.error) {
             toast({
                 variant: "destructive",
                 title: "Error: Unable to Add Project",
@@ -38,7 +50,6 @@ const AddResumeForm = () => {
 
 
 
-        // Reset form and state
         formRef.current?.reset();
         setProjectData({ projectName: "", resume: "" });
     }

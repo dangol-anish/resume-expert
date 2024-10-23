@@ -1,15 +1,63 @@
+"use client"
 import { HeadingItem } from "@/data";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Brygada_1918 } from "next/font/google";
 import Link from "next/link";
-import { CardComponent } from "@/data";
 import Image from "next/image";
 import card from "../../../public/card.svg";
 import { Button } from "@/components/ui/button";
+import { getProjectData } from "./actions";
+
+import { useToast } from "@/hooks/use-toast";
+import { UUID } from "crypto";
+
+interface ProjectData {
+  projectId: UUID;
+  projectName: string;
+  numberOfJobs: number;
+  
+}
+
 
 const brygada = Brygada_1918({ subsets: ["latin"] });
 
 function Projects() {
+  const { toast } = useToast();
+
+  const [projectData, setProjectData] = useState<ProjectData[]>([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await getProjectData();
+      console.log(response)
+
+      if (response.data) {
+        const formattedData = response.data.map((item) => ({
+          projectId: item.project_id,
+          projectName: item.project_name,
+          numberOfJobs: item.no_of_jobs,
+        }));
+        setProjectData(formattedData);
+      } else if (response.error) {
+        toast({
+          variant: "destructive",
+          description: response.error,
+        });
+      }
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        description: "Error",
+      });
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+
+
   return (
     <div className="h-full flex  flex-col gap-8 items-center text-primary_color">
       <div className="flex flex-col items-center ">
@@ -38,17 +86,17 @@ function Projects() {
 
       <div className="w-full flex flex-col items-center h-full">
         <div className="h-full w-full flex flex-col ">
-          {CardComponent.length > 0 ? (
+          {projectData.length > 0 ? (
             <div className="flex-grow px-8 py-4 grid grid-cols-3 gap-4 max-h-[50vh] overflow-y-auto no-scrollbar">
-              {CardComponent.map((item) => (
+              {projectData.map((item) => (
                 <div
-                  key={item.id}
+                  key={item.projectId}
                   className="flex flex-col items-center text-a_black hover:bg-[#FFF1EA] p-2 rounded-lg"
                 >
-                  <Image src={card} alt="Card" />{" "}
-                  <p className="text-sm">{item.job_title}</p>
+                  <Image src={card} alt="Card" />
+                  <p className="text-sm">{item.projectName}</p>
                   <p className="text-xs text-a_black/70">
-                    {item.no_of_jobs} Jobs
+                    {item.numberOfJobs} Jobs
                   </p>
                 </div>
               ))}
@@ -65,7 +113,7 @@ function Projects() {
           )}
         </div>
 
-        {CardComponent.length === 0 ? null : (
+        {projectData.length === 0 ? null : (
           <Button className="bg-[#FFB158] text-a_black border border-primary_color rounded-full font-bold hover:bg-primary_color px-5 py-2  ">
             <Link href="/projects/add-resume" className="">
               Create a project
