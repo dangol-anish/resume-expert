@@ -86,7 +86,7 @@ function Projects() {
             <div className="flex-grow px-8 py-4 grid grid-cols-3 gap-4 max-h-[50vh] overflow-y-auto no-scrollbar">
               {projectData.map((item) => (
                 <Link
-                href="/projects/list"
+                  href={`/projects/list/${item.projectId}`}
                   key={item.projectId}
                   className="flex flex-col items-center text-a_black hover:bg-[#FFF1EA] p-2 rounded-lg justify-center"
                 >
