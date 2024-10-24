@@ -1,12 +1,11 @@
 import React from "react";
 import { Brygada_1918 } from "next/font/google";
 import Link from "next/link";
-import { CardComponent, ListComponent } from "@/data";
+import { ListComponent } from "@/data";
 import { HeadingItem } from "@/data";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -72,9 +71,9 @@ function ProjectList() {
               </Table>
             </div>
           ) : (
-            <div className="w-full flex justify-center mt-4 items-center">
+            <div className="w-full h-full flex justify-center mt-4 items-center">
               <Link
-                href="/projects/add"
+                href="/projects/add-job"
                 className="flex justify-center items-center bg-[#FFB158] text-a_black border border-primary_color rounded-full font-bold hover:bg-primary_color px-5 py-2"
               >
                 Add new
@@ -83,9 +82,9 @@ function ProjectList() {
           )}
 
           {ListComponent.length === 0 ? null : (
-            <div className="w-full flex justify-center mt-4 items-center ">
+            <div className="w-full h-full flex justify-center mt-4 items-center ">
               <Link
-                href="/projects/add"
+                href="/projects/add-job"
                 className="flex justify-center items-center bg-[#FFB158] text-a_black border border-primary_color rounded-full font-bold hover:bg-primary_color px-5 py-2"
               >
                 Add new
