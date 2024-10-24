@@ -90,7 +90,7 @@ const GetJobData = () => {
           ) : (
             <div className="w-full h-full flex justify-center mt-4 items-center">
               <Link
-                href="/projects/add-job"
+                href={`/projects/add-job/${id}`}
                 className="flex justify-center items-center bg-[#FFB158] text-a_black border border-primary_color rounded-full font-bold hover:bg-primary_color px-5 py-2"
               >
                 Add new
@@ -101,7 +101,7 @@ const GetJobData = () => {
           {jobData.length === 0 ? null : (
             <div className="w-full flex justify-center mt-4 items-center ">
               <Link
-                href="/projects/add-job"
+                 href={`/projects/add-job/${id}`}
                 className="flex justify-center items-center bg-[#FFB158] text-a_black border border-primary_color rounded-full font-bold hover:bg-primary_color px-5 py-2"
               >
                 Add new

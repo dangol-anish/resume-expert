@@ -38,7 +38,6 @@ const AddResumeForm = () => {
         const result = await AddProjects(projectData);
         setPending(false);
 
-        console.log(result);
 
         if (result?.error) {
             toast({

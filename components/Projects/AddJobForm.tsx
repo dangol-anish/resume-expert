@@ -7,16 +7,21 @@ import { Button } from '../ui/button'
 import { JobDataProps, ProjectDataProps } from '@/types'
 import { AddProjects } from '@/app/(protected)/projects/add-resume/actions'
 import { useToast } from '@/hooks/use-toast'
+import { AddJobs } from '@/app/(protected)/projects/add-job/actions'
+import { useParams } from 'next/navigation'
 
 
 const AddJobForm = () => {
+    const {id} = useParams();
     const {toast} = useToast()
     const formRef = useRef<HTMLFormElement>(null);
     const [pending, setPending] = useState(false);
 
+
     const [jobData, setJobData] = useState<JobDataProps>({
         jobName: "",
-        jobDescription: ""
+        jobDescription: "",
+        projectId: id
     });
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -24,7 +29,38 @@ const AddJobForm = () => {
         setJobData(prev => ({ ...prev, [name]: value }));
     }
 
-    const handleSubmit = ()=>{}
+    const handleFormSubmission = async (jobData: JobDataProps) =>{
+        if(jobData.jobName.trim() === "" || jobData.jobDescription.trim() === "")
+        {
+            toast({
+                variant: "destructive",
+                title: "Invalid Input",
+                description: "Job Name or Job Description cannot be empty"
+            });
+            return;
+        }
+
+        setPending(true);
+        const result = await AddJobs(jobData);
+        setPending(false);
+
+        if (result?.error) {
+            toast({
+                variant: "destructive",
+                title: "Error: Unable to add Job",
+                description: result.error
+            })
+        }
+
+        formRef.current?.reset();
+        setJobData({ jobName: "", jobDescription: "", projectId: "" });
+
+    }
+
+    const handleSubmit = async(e: React.FormEvent<HTMLFormElement>)=>{
+        e.preventDefault();
+        await handleFormSubmission(jobData);
+    }
 
 
 

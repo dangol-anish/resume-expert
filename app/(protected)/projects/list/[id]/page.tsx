@@ -4,11 +4,13 @@ import { Brygada_1918 } from "next/font/google";
 
 import { HeadingItem } from "@/data";
 import GetJobData from "@/components/Projects/List/GetJobData";
+import { useParams } from "next/navigation";
 
 
 const brygada = Brygada_1918({ subsets: ["latin"] });
 
 function ProjectList() {
+  const {id} = useParams();
   
   return (
     <>

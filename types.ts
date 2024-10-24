@@ -37,4 +37,5 @@ export interface JobData{
 export interface JobDataProps {
   jobName: string;
   jobDescription: string;
+  projectId: string | string[];
 }
