@@ -1,11 +1,12 @@
 "use server"
 
-import { ProjectDataProps } from "@/types";
+import { JobDataProps } from "@/types";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
-export async function AddProjects(projectData: ProjectDataProps) {
+export async function AddProjects(jobData: JobDataProps) {
 
+    console.log(jobData)
 
     const supabase = createClient();
     const { data: { user } } = await supabase.auth.getUser();
@@ -16,19 +17,19 @@ export async function AddProjects(projectData: ProjectDataProps) {
         };
     }
 
-    const { projectName, resume } = projectData;
+    const { jobName, jobDescription } = jobData;
 
     // Validate that projectName and resume are not null, undefined, or empty
-    if (!projectName?.trim() || !resume?.trim()) {
+    if (!jobName?.trim() || !jobDescription?.trim()) {
         return {
             error: "Project name and resume cannot be empty."
         };
     }
 
-    const { error } = await supabase.from("projects").insert({
-        project_name: projectName,
+    const { error } = await supabase.from("jobs").insert({
+        job_name: jobName,
         user_id: user.id,
-        resume: resume,
+        job_description: jobDescription,
     });
 
     if (error) {
@@ -37,10 +38,10 @@ export async function AddProjects(projectData: ProjectDataProps) {
         };
     }
 
-    redirect("/projects");
+    redirect("/results");
 
     return {
-        message: "Successuly added new project"
+        message: "Successuly added new jobs"
     }
 
 }
