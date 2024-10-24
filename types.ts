@@ -4,10 +4,10 @@ import { UUID } from "crypto";
 export interface ProjectDataProps {
     projectName: string;
     resume: string;
-  }
+}
 
-  export interface GetProjectDataResponse {
-    data?: {
+export interface GetProjectDataResponse {
+  data?: {
       projectName: string; // Fix the typo here
       no_of_jobs: number;  // Ensure consistency with this naming
     }[];
@@ -32,4 +32,9 @@ export interface JobData{
     jobName: string;
     jobScore: number;
     jobRemarks: string;
-  }
+}
+
+export interface JobDataProps {
+  jobName: string;
+  jobDescription: string;
+}

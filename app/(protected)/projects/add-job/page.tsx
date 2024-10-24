@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import AddJobForm from "@/components/Projects/AddJobForm";
 
 const brygada = Brygada_1918({ subsets: ["latin"] });
 
@@ -35,29 +36,7 @@ function AddJobs() {
           </div>
         ))}
       </div>
-      <div className="h-full w-full flex flex-col">
-        <div className="flex flex-col flex-grow text-a_black">
-          <div>
-            <Label className="">What should we call it?</Label>
-            <Input
-              placeholder="Lockheed Martin - Business Analyst"
-              className="bg-white border-p_border rounded-lg"
-            />
-          </div>
-          <div className="flex-grow mt-4">
-            <Label className="text-a_black">Job Description</Label>
-            <Textarea
-              className="bg-white border-p_border rounded-lg resize-none h-[90%]"
-              placeholder="Copy and paste the entire description"
-            />
-          </div>
-        </div>
-        <div className="w-full flex justify-center mt-4">
-          <Button className="bg-[#FFB158] text-a_black border border-primary_color rounded-full font-bold hover:bg-primary_color px-5 py-2">
-            Get the results
-          </Button>
-        </div>
-      </div>
+      <AddJobForm/>
     </div>
   );
 }
