@@ -25,4 +25,11 @@ export interface ProjectDataProps {
     numberOfJobs: number;
     
   }
-  
+
+export interface JobData{
+  jobDate: Date;
+    jobId: UUID;
+    jobName: string;
+    jobScore: number;
+    jobRemarks: string;
+  }
