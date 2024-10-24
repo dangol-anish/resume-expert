@@ -18,7 +18,7 @@ import { formatDate } from '@/utils/date-format';
 
 const GetJobData = () => {
     const {id} = useParams();
-    console.log(id)
+
     const {toast } = useToast();
     const [jobData, setJobData] = useState<JobData[]>([]);
 
@@ -98,8 +98,8 @@ const GetJobData = () => {
             </div>
           )}
 
-          {ListComponent.length === 0 ? null : (
-            <div className="w-full h-full flex justify-center mt-4 items-center ">
+          {jobData.length === 0 ? null : (
+            <div className="w-full flex justify-center mt-4 items-center ">
               <Link
                 href="/projects/add-job"
                 className="flex justify-center items-center bg-[#FFB158] text-a_black border border-primary_color rounded-full font-bold hover:bg-primary_color px-5 py-2"
