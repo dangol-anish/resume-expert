@@ -26,7 +26,7 @@ const GetJobData = () => {
 
     const fetchData = async () => {
         try {
-            const response = await getJobData();      
+            const response = await getJobData(id);      
         if (response.data) {
           const formattedData = response.data.map((item) => ({
             jobDate: item.created_at,

@@ -2,7 +2,7 @@
 import { createClient } from "@/utils/supabase/server";
 
 
-export async function getJobData(){
+export async function getJobData(project_id: string | string[]){
     const supabase = createClient();
     const { data: { user } } = await supabase.auth.getUser();
 
@@ -15,7 +15,8 @@ export async function getJobData(){
     const { data, error } = await supabase
   .from("jobs")
   .select("job_id, created_at, job_name, job_score, job_remarks")
-  .eq("user_id", user.id);
+  .eq("user_id", user.id).eq("project_id", project_id);
+
 
   if (error) {
     return {
