@@ -14,7 +14,7 @@ export async function getJobData(project_id: string | string[]){
 
     const { data, error } = await supabase
   .from("jobs")
-  .select("job_id, created_at, job_name, job_score, job_remarks")
+  .select("job_id, created_at, job_name")
   .eq("user_id", user.id).eq("project_id", project_id);
 
 

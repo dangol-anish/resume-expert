@@ -32,8 +32,8 @@ const GetJobData = () => {
             jobDate: item.created_at,
             jobId: item.job_id,
             jobName: item.job_name,
-            jobScore: item.job_score,
-            jobRemarks: item.job_remarks
+            jobScore: 0,
+            jobRemarks: ""
           }));
           setJobData(formattedData);
         } else if (response.error) {

@@ -38,7 +38,7 @@ export async function AddJobs(jobData: JobDataProps) {
         };
     }
 
-    redirect("/results");
+    redirect("projects/results");
 
     return {
         message: "Successuly added new jobs"
