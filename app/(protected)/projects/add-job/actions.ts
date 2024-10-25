@@ -17,7 +17,6 @@ export async function AddJobs(jobData: JobDataProps) {
 
     const { jobName, jobDescription, projectId } = jobData;
 
-    // Validate that projectName and resume are not null, undefined, or empty
     if (!jobName?.trim() || !jobDescription?.trim()) {
         return {
             error: "Project name and resume cannot be empty."
@@ -38,10 +37,41 @@ export async function AddJobs(jobData: JobDataProps) {
         };
     }
 
-    redirect("projects/results");
+    generatePromptResults(jobDescription, projectId);
+    redirect("/projects/results");
+
+    
 
     return {
         message: "Successuly added new jobs"
     }
+
+}
+
+
+export async function generatePromptResults(jobDescription: string, projectId: string | string[]){
+
+    const supabase = createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) {
+        return {
+            error: "User is not authenticated."
+        };
+    }
+    
+    const { data, error } = await supabase
+    .from("projects")
+    .select("resume")
+    .eq("user_id", user.id).eq("project_id", projectId);
+
+
+
+    console.log({
+        jobDescription,
+        resume: data?.[0]?.resume,
+        projectId,
+        userId: user.id,
+    });
 
 }
