@@ -3,6 +3,8 @@
 import { JobDataProps } from "@/types";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
+import { generatePrompts } from "@/utils/openai";
+import {  getDetails } from "../results/actions";
 
 export async function AddJobs(jobData: JobDataProps) {
 
@@ -37,7 +39,7 @@ export async function AddJobs(jobData: JobDataProps) {
         };
     }
 
-    generatePromptResults(jobDescription, projectId);
+    getDetails(jobDescription, projectId);
     redirect("/projects/results");
 
     
@@ -49,29 +51,3 @@ export async function AddJobs(jobData: JobDataProps) {
 }
 
 
-export async function generatePromptResults(jobDescription: string, projectId: string | string[]){
-
-    const supabase = createClient();
-    const { data: { user } } = await supabase.auth.getUser();
-
-    if (!user) {
-        return {
-            error: "User is not authenticated."
-        };
-    }
-    
-    const { data, error } = await supabase
-    .from("projects")
-    .select("resume")
-    .eq("user_id", user.id).eq("project_id", projectId);
-
-
-
-    console.log({
-        jobDescription,
-        resume: data?.[0]?.resume,
-        projectId,
-        userId: user.id,
-    });
-
-}
