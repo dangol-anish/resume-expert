@@ -42,7 +42,7 @@ function Results() {
                 Quick Summary
               </span>
               <p className="text-sm text-a_black">
-                {ResultExample.quick_summary}
+            
               </p>
             </div>
             <div className="flex gap-3 flex-col">
@@ -50,11 +50,7 @@ function Results() {
                 Red Flags
               </span>
               <ul className="text-sm text-a_black">
-                {ResultExample.red_flags.map((flag, index) => (
-                  <li className="list-disc ml-4" key={index}>
-                    {flag}
-                  </li>
-                ))}
+                
               </ul>
             </div>
             <div className="flex gap-3 flex-col">
@@ -62,25 +58,21 @@ function Results() {
                 Interview Focus
               </span>
               <ul className="text-sm text-a_black">
-                {ResultExample.interview_focus.map((focus, index) => (
-                  <li key={index} className="list-disc ml-4">
-                    {focus}
-                  </li>
-                ))}
+                
               </ul>
             </div>
             <div className="flex gap-3 flex-col">
               <span className="text-sm font-bold result-subheading">
                 Quick Tips
               </span>
-              <p className="text-sm text-a_black">{ResultExample.quick_tips}</p>
+              <p className="text-sm text-a_black"></p>
             </div>
             <div className="flex gap-3 flex-col">
               <span className="text-sm font-bold result-subheading">
                 Resume to Job Match Ratio
               </span>
               <p className="text-sm text-a_black">
-                {ResultExample.rtj_match_ratio}%
+              
               </p>
             </div>
             <div className="flex gap-3 flex-col">
@@ -88,7 +80,7 @@ function Results() {
                 Final Remarks
               </span>
               <p className="text-sm text-a_black">
-                {ResultExample.final_remarks}
+          
               </p>
             </div>
           </div>

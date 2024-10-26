@@ -25,13 +25,15 @@ export async function AddJobs(jobData: JobDataProps) {
         };
     }
 
-    const { error } = await supabase.from("jobs").insert({
-        job_name: jobName,
-        user_id: user.id,
-        job_description: jobDescription,
-        project_id: projectId
-    
-    });
+    const { data, error } = await supabase
+  .from("jobs")
+  .insert({
+    job_name: jobName,
+    user_id: user.id,
+    job_description: jobDescription,
+    project_id: projectId
+  })
+  .select('job_id');
 
     if (error) {
         return {
@@ -39,7 +41,10 @@ export async function AddJobs(jobData: JobDataProps) {
         };
     }
 
-    getDetails(jobDescription, projectId);
+    const jobId = data[0].job_id;
+
+
+    getDetails(jobDescription, projectId, jobId);
     redirect("/projects/results");
 
     

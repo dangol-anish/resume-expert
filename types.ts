@@ -27,7 +27,7 @@ export interface GetProjectDataResponse {
   }
 
 export interface JobData{
-  jobDate: Date;
+   jobDate: Date;
     jobId: UUID;
     jobName: string;
     jobScore: number;
@@ -38,4 +38,17 @@ export interface JobDataProps {
   jobName: string;
   jobDescription: string;
   projectId: string | string[];
+}
+
+export interface User {
+  id: string;
+}
+
+export interface ResumeResult {
+  quickSummary: string | null;
+  redFlags: string | null;
+  interviewFocus: string | null;
+  quickTipsAndStrategy: string | null;
+  resumeToJobMatch: string | null;
+  finalRemarks: string | null;
 }
