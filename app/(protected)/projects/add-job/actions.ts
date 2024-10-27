@@ -45,13 +45,7 @@ export async function AddJobs(jobData: JobDataProps) {
 
 
     getDetails(jobDescription, projectId, jobId);
-    redirect("/projects/results");
-
-    
-
-    return {
-        message: "Successuly added new jobs"
-    }
+    redirect(`/projects/results/${jobId}`);
 
 }
 

@@ -1,3 +1,4 @@
+"use server"
 import { ResumeResult, User } from "@/types";
 import { generatePrompts } from "@/utils/openai";
 import { createClient } from "@/utils/supabase/server";
@@ -76,7 +77,7 @@ export async function getDetails(jobDescription: string, projectId: string | str
             }]);
 
         if (insertError) {
-            console.log({ error: "Failed to save results." }); 
+            return { error: "Failed to save results." };
         }
 
         return { success: "Results saved successfully." };
@@ -123,3 +124,21 @@ export const generateFinalRemarks = async (jobDescription: string, resume: strin
     const finalRemarksResult = await generatePrompts(finalRemarksQuery);
     return finalRemarksResult;
 };
+
+
+export async function getResults(id: string | string[]){
+
+    const supabase = createClient();
+    
+    const {data, error } = await supabase.from("job_results").select("j_quick_summary, j_red_flags, j_interview_focus, j_tips_and_strategy, j_rtj_match, j_final_remarks").eq("job_id", id);
+
+    if (error) {
+      
+        return {
+            error: error.message
+        }
+    }
+
+    return data;
+
+}
