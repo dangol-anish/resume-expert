@@ -22,18 +22,19 @@ const GetJobData = () => {
     const {toast } = useToast();
     const [jobData, setJobData] = useState<JobData[]>([]);
 
-    console.log(jobData)
+    
 
     const fetchData = async () => {
         try {
-            const response = await getJobData(id);      
+            const response = await getJobData(id);   
+            console.log(response);   
         if (response.data) {
           const formattedData = response.data.map((item) => ({
             jobDate: item.created_at,
             jobId: item.job_id,
             jobName: item.job_name,
-            jobScore: 0,
-            jobRemarks: ""
+            jobScore: item.job_results[0].j_rtj_match,
+            jobRemarks: item.job_results[0].j_final_remarks,
           }));
           setJobData(formattedData);
         } else if (response.error) {
@@ -73,16 +74,24 @@ const GetJobData = () => {
                 </TableHeader>
                 <TableBody className="w-full">
                   {jobData.map((item) => (
+                    <>
+                   
                     <TableRow key={item.jobId}>
+            
                       <TableCell className="font-medium w-[20%]">
                         {formatDate(item.jobDate)}
                       </TableCell>
-                      <TableCell className='w-[50%]'>{item.jobName}</TableCell>
+                      <TableCell className='w-[50%]'><Link href={`/projects/results/${item.jobId}`}>{item.jobName}</Link></TableCell>
                       <TableCell className='w-[10%]'>{item.jobScore}</TableCell>
                       <TableCell className="text-right w-[20%]">
                         {item.jobRemarks}
                       </TableCell>
+                 
                     </TableRow>
+         
+                    
+                    </>
+                   
                   ))}
                 </TableBody>
               </Table>

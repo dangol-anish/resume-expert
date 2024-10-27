@@ -128,7 +128,7 @@ function Results() {
            </div>
          </div> : <div className="loading h-full w-full justify-center items-center">
   <div className="spinner"></div>
-  <span className="pulse">Generating Results...</span>
+  <span className="pulse">Retrieving Results...</span>
 </div>
 
          }

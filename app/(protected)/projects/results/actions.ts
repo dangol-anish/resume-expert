@@ -73,7 +73,8 @@ export async function getDetails(jobDescription: string, projectId: string | str
                 j_tips_and_strategy: results.quickTipsAndStrategy, 
                 j_rtj_match: results.resumeToJobMatch, 
                 j_final_remarks: results.finalRemarks, 
-                job_id: jobId 
+                job_id: jobId,
+                project_id: projectId
             }]);
 
         if (insertError) {

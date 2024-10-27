@@ -12,22 +12,24 @@ export async function getJobData(project_id: string | string[]){
         };
     }
 
-    const { data, error } = await supabase
-  .from("jobs")
-  .select("job_id, created_at, job_name")
-  .eq("user_id", user.id).eq("project_id", project_id);
+const { data, error } = await supabase
+.from('jobs')
+.select(`
+  job_id,
+  job_name,
+  created_at,
+  job_results (j_rtj_match, j_final_remarks)
+`).eq("project_id", project_id)
 
-
-  if (error) {
-    return {
-        error: error.message
-    };
-}
+if (error) {
+ return {
+    error: error.message
+ }
+} 
 
 
 return{
     data: data
 }
-
 
 }

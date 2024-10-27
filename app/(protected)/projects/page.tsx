@@ -83,7 +83,7 @@ function Projects() {
       <div className="w-full flex flex-col items-center h-full">
         <div className="h-full w-full flex flex-col ">
           {projectData.length > 0 ? (
-            <div className="flex-grow px-8 py-4 grid grid-cols-3 gap-4 max-h-[50vh] overflow-y-auto no-scrollbar">
+            <div className="flex-grow px-8 py-4 grid grid-cols-3 gap-4 max-h-[50vh] overflow-y-auto no-scrollbar justify-start items-start">
               {projectData.map((item) => (
                 <Link
                   href={`/projects/list/${item.projectId}`}
